@@ -26,7 +26,7 @@ function checksExistsUserAccount(request, response, next) {
 function checksCreateTodosUserAvailability(request, response, next) {
   const { user } = request;
 
-  if (!((user.pro === false && user.todos.length < 10) || user.pro === true)) {
+  if (user.todos.length === 10 && !user.pro) {
     return response.status(403).json({
       error:
         "You do not have pro account activated and have reached limit of tasks can be registered!",
